@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "type": "completion",
+  "description": "Write an email based on the given information",
+  "completion": {
+    "max_tokens": 1000,
+    "temperature": 0.0,
+    "top_p": 0.0,
+    "presence_penalty": 0.0,
+    "frequency_penalty": 0.0
+  },
+  "input": {
+    "parameters" : [
+        {
+            "name": "input",
+            "description": "What the email should be about.",
+            "defaultValue": ""
+        },
+        {
+            "name": "tone",
+            "description": "The tone of the email.",
+            "defaultValue": "Professional"
+        },
+        {
+            "name": "length",
+            "description": "The length of the email.",
+            "defaultValue": ""
+        },
+        {
+            "name": "sender",
+            "description": "The person who will send the email.",
+            "defaultValue": ""
+        }
+    ]
+  }
+}

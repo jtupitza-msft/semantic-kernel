@@ -1,0 +1,6 @@
+Write an email based on the given text
+Use a {{$tone}} tone.
+The email should be {{$length}}.
+The email should be from {{$sender}}.
+
+{{$input}}
