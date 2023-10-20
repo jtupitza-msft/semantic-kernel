@@ -20,19 +20,13 @@ namespace Microsoft.SemanticKernel;
 /// <summary>
 /// Standard Semantic Kernel callable function with instrumentation.
 /// </summary>
-public sealed class InstrumentedSKFunction : ISKFunction
+internal sealed class InstrumentedSKFunction : ISKFunction
 {
     /// <inheritdoc/>
     public string Name => this._function.Name;
 
     /// <inheritdoc/>
     public string PluginName => this._function.PluginName;
-
-    [Obsolete("Methods, properties and classes which include Skill in the name have been renamed. Use ISKFunction.PluginName instead. This will be removed in a future release.")]
-    [EditorBrowsable(EditorBrowsableState.Never)]
-#pragma warning disable CS1591
-    public string SkillName => this._function.PluginName;
-#pragma warning restore CS1591
 
     /// <inheritdoc/>
     public string Description => this._function.Description;
@@ -91,16 +85,6 @@ public sealed class InstrumentedSKFunction : ISKFunction
     /// <inheritdoc/>
     public ISKFunction SetAIService(Func<ITextCompletion> serviceFactory) =>
         this._function.SetAIService(serviceFactory);
-
-    /// <inheritdoc/>
-    public ISKFunction SetDefaultFunctionCollection(IReadOnlyFunctionCollection functions) =>
-        this._function.SetDefaultFunctionCollection(functions);
-
-    [Obsolete("Methods, properties and classes which include Skill in the name have been renamed. Use ISKFunction.SetDefaultFunctionCollection instead. This will be removed in a future release.")]
-    [EditorBrowsable(EditorBrowsableState.Never)]
-#pragma warning disable CS1591
-    public ISKFunction SetDefaultSkillCollection(IReadOnlyFunctionCollection skills) =>
-        this._function.SetDefaultFunctionCollection(skills);
 
     #region private ================================================================================
 
@@ -191,9 +175,24 @@ public sealed class InstrumentedSKFunction : ISKFunction
     #region Obsolete =======================================================================
 
     /// <inheritdoc/>
+    [Obsolete("Methods, properties and classes which include Skill in the name have been renamed. Use ISKFunction.PluginName instead. This will be removed in a future release.")]
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public string SkillName => this._function.PluginName;
+
+    /// <inheritdoc/>
     [Obsolete("Kernel no longer differentiates between Semantic and Native functions. This will be removed in a future release.")]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public bool IsSemantic => this._function.IsSemantic;
+
+    /// <inheritdoc/>
+    [Obsolete("This method is a nop and will be removed in a future release.")]
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public ISKFunction SetDefaultSkillCollection(IReadOnlyFunctionCollection skills) => this;
+
+    /// <inheritdoc/>
+    [Obsolete("This method is a nop and will be removed in a future release.")]
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public ISKFunction SetDefaultFunctionCollection(IReadOnlyFunctionCollection functions) => this;
 
     #endregion
 }
